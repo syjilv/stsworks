@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+<tiles-definitions>
+	<definition name="mainTemplate" template="/WEB-INF/layout/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/layout/top.jsp"/>
+	</definition>
+	
+	<definition name="indexTemplate" template="/WEB-INF/layout/indexLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/layout/top.jsp"/>
+	</definition>
+	<definition name="index" extends="mainTemplate">
+		<put-attribute name="toplist" value="/WEB-INF/product/topproduct.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/product/prdlist.jsp"/>
+	</definition>
+	
+	<definition name="prdlist" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/product/prdlist.jsp"/>
+	</definition>
+	
+</tiles-definitions>
