@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link rel="stylesheet" href="/minishop/common/css/lavalamp_test.css" type="text/css" media="screen">
-<script type="text/javascript" src="/minishop/common/js/jquery-1.2.3.min.js"></script>
-<script type="text/javascript" src="/minishop/common/js/jquery.easing.min.js"></script>
-<script type="text/javascript" src="/minishop/common/js/jquery.lavalamp.min.js"></script>
+<link rel="stylesheet" href="/finalshop/resources/common/css/lavalamp_test.css" type="text/css" media="screen">
+<script type="text/javascript" src="/finalshop/resources/common/js/jquery-1.2.3.min.js"></script>
+<script type="text/javascript" src="/finalshop/resources/common/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="/finalshop/resources/common/js/jquery.lavalamp.min.js"></script>
 <script type="text/javascript">
     $(function() {
         $("#menu").lavaLamp({
@@ -40,13 +40,13 @@
 		<div style="clear:both;">
 			<ul class="lavaLampNoImage" id="menu">
 				<li class="current">
-				<a href="/finalshop/index.do">Home</a></li>
-				<li><a href="/finalshop/prdlist.do?category=CAT000000001">DRESS</a></li>
-				<li><a href="/finalshop/prdlist.do?category=CAT000000002">TOP</a></li>
-				<li><a href="/finalshop/prdlist.do?category=CAT000000003">BOTTOM</a></li>
-				<li><a href="/finalshop/prdlist.do?category=CAT000000004">OUTER</a></li>
-				<li><a href="/finalshop/prdlist.do?category=CAT000000005">ACC</a></li>
-				<li><a href="/finalshop/prdlist.do?category=CAT000000006">CARDIGAN</a></li>
+				<a href="index.do">Home</a></li>
+				<li><a href="prdlist.do?category=CAT000000001">DRESS</a></li>
+				<li><a href="prdlist.do?category=CAT000000002">TOP</a></li>
+				<li><a href="prdlist.do?category=CAT000000003">BOTTOM</a></li>
+				<li><a href="prdlist.do?category=CAT000000004">OUTER</a></li>
+				<li><a href="prdlist.do?category=CAT000000005">ACC</a></li>
+				<li><a href="prdlist.do?category=CAT000000006">CARDIGAN</a></li>
 			</ul>
 		</div>
 	</div>

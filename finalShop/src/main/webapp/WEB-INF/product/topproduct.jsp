@@ -7,11 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/minishop/common/css/style.css" />
+<link rel="stylesheet" type="text/css" href="/finalshop/resources/common/css/style.css" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic'
 	rel='stylesheet' type='text/css'>
 <script type="text/javascript"
-	src="/minishop/common/js/modernizr.custom.79639.js"></script>
+	src="/finalshop/resources/common/js/modernizr.custom.79639.js"></script>
 <%
 	ArrayList<ProductDTO> toplist = (ArrayList<ProductDTO>) request.getAttribute("toplist");
 	int size = toplist.size();
@@ -24,7 +24,7 @@
 				ProductDTO prd = toplist.get(i);
 		%>
 		<figure>
-			<img src="/minishop/images/product/<%=prd.getImg_gen_file_nm()%>"
+			<img src="/finalshop/resources/images/product/<%=prd.getImg_gen_file_nm()%>"
 				alt="<%=prd.getPrd_nm()%>" />
 			<input type="radio" name="radio-set" <%if (i == 0) {%>
 				checked="checked" <%}%> />

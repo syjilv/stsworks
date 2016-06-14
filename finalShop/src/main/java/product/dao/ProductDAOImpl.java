@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import product.dto.ProductDTO;
 import product.dto.ProductRowMapper;
+import product.dto.TopProductRowMapper;
 
 @Repository("productdao")
 public class ProductDAOImpl implements ProductDAO {
@@ -32,6 +33,6 @@ public class ProductDAOImpl implements ProductDAO {
 				+ "		order by sum(O.QTY) DESC) v "
 				+ "where rownum <= 8";
 		
-		return template.query(sql, new ProductRowMapper());
+		return template.query(sql, new TopProductRowMapper());
 	}
 }
