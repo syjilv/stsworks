@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body bgcolor="white" text="black" link="blue" vlink="purple" alink="red">
-<form name="form1" method="post" action="mybatisInsert.do">
+<form name="form1" method="post" action="insert.do">
 <table align="center" cellpadding="0" cellspacing="0" width="479">
     <tr>
         <td width="469" colspan="2" height="42">

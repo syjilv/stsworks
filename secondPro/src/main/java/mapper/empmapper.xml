@@ -6,10 +6,22 @@
 	<select id="count" resultType="int">
 		select count(*) from myemp
 	</select>
-	<select id="list" resultType="emp.dto.MyEmpDTO">
+	<select id="list" resultType="emp">
 		select * from myemp
 	</select>
-	<select id="search" resultType="emp.dto.MyEmpDTO">
+	<select id="search" resultType="emp" parameterType="String">
 		select * from myemp where addr like '%'||#{addr}||'%'
+	</select>
+	<select id="insert" parameterType="emp">
+		insert into myemp values(#{id}, #{pass}, #{addr}, 1000, #{grade}, '001', #{name})
+	</select>
+	<select id="update" parameterType="emp">
+		update myemp set pass = #{pass}, addr = #{addr}, grade = #{grade} where id = #{id}
+	</select>
+	<select id="delete" parameterType="String">
+		delete from myemp where id = #{id}
+	</select>
+	<select id="read" resultType="emp" parameterType="String">
+		select * from myemp where id = #{id}
 	</select>
 </mapper>

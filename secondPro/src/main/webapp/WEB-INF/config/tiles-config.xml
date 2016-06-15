@@ -41,7 +41,10 @@
 		<put-attribute name="content" value="/WEB-INF/emp/mybatissearch.jsp"/>
 	</definition>
 	<definition name="mybatisSearch/list" extends="mainTemplate">
-		<put-attribute name="content" value="/WEB-INF/emp/searchlist.jsp"/>
+		<put-attribute name="content" value="/WEB-INF/emp/searchlist_jstl.jsp"/>
+	</definition>
+	<definition name="mybatisDetail" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/emp/detail_jstl.jsp"/>
 	</definition>
 
 </tiles-definitions>

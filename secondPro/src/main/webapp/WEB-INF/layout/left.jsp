@@ -14,9 +14,11 @@
 		<h5><a href="insert.do">회원가입</a></h5>
 		<h5><a href="list.do">회원목록</a></h5>
 		<h5><a href="search.do">회원검색</a></h5>
+		<hr/>
 		<h5><a href="count.do">인원수 확인(Mybatis)</a></h5>
 		<h5><a href="mybatisList.do">회원목록(Mybatis)</a></h5>
 		<h5><a href="mybatisSearch.do">회원검색(Mybatis)</a></h5>
+		<h5><a href="insert.do">회원가입(Mybatis)</a></h5>
 	</div>
 </body>
 </html>

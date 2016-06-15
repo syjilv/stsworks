@@ -12,7 +12,7 @@
 
 	<% MyEmpDTO user  = (MyEmpDTO) request.getAttribute("user");%>
 
-<form name="form1" method="post" action="update.do">
+<form name="form1" method="post" action="mybatisUpdate.do">
 <table align="center" cellpadding="0" cellspacing="0" width="479">
     <tr>
         <td width="469" colspan="2" height="42">

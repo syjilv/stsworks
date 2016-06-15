@@ -22,20 +22,17 @@ public class MyEmpMybatisDAOImpl implements MyEmpDAO {
 
 	@Override
 	public void insert(MyEmpDTO user) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.insert("kitri.myemp.insert", user);
 	}
 
 	@Override
 	public void update(MyEmpDTO userInfo) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.update("kitri.myemp.update", userInfo);
 	}
 
 	@Override
 	public void delete(String id) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.delete("kitri.myemp.delete", id);
 	}
 
 	@Override
@@ -56,8 +53,7 @@ public class MyEmpMybatisDAOImpl implements MyEmpDAO {
 
 	@Override
 	public MyEmpDTO getDetail(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("kitri.myemp.read", id); 
 	}
 
 }
