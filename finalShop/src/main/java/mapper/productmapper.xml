@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="finalshop.product">
+
+	<select id="list" resultType="product" parameterType="String">
+		select *
+		from TB_PRODUCT where CATEGORY_NO like #{category}
+	</select>
+	<select id="toplist" resultType="product">
+		select PRD_NO,PRD_NM,IMG_GEN_FILE_NM from tb_product where PRD_NO in (select PRD_NO from topproduct)
+	</select>
+</mapper>
