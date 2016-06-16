@@ -3,9 +3,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
 
 
 	<annotation-driven />
@@ -54,6 +58,26 @@
 		<beans:constructor-arg ref="sqlSessionFactory"/>
 	</beans:bean>
 	
+	<!-- =========== 트랜잭션 ========== -->
+	<!-- 1. spring 내부에서 jdbc를 이용할 때 트랜잭션 처리를 간편하게 작업할 수 있도록 지원되는 클래스를 등록 -->
+	<beans:bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- DB와 연결되어 있어야 트랜잭션 처리를 할 수 있고 커넥션에 있는 트랜잭션 관리 메소드를 이용하기 위해 -->
+		<beans:property name="dataSource" ref="con"/>
+	</beans:bean>
+	<!-- 2. 트랜잭션에 대한 처리를 aop 적용 -->
+		<!-- 1) Advice 등록(xml에서 등록) - 트랜잭션을 xml로 처리하는 방법 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<!-- 트랜잭션을 적용할 메소드에 대한 정보(insert로 끝나는 메소드를 호출할 때 Exception이 발생하면 rollback 시켜라) -->
+		<tx:attributes>
+			<tx:method name="*insert" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>		
 	
+		<!-- 2) aop 적용 -->
+	<aop:config proxy-target-class="true">
+		<aop:pointcut expression="execution(public * emp.service.MyEmpServiceImpl.*(..))" id="trans"/>
+		<aop:advisor id="txadvisor" advice-ref="txAdvice" pointcut-ref="trans"/>
+	</aop:config>
+
 	
 </beans:beans>

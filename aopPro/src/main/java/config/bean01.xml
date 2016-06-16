@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="dao" class="aop01.UserDAO"/>
+	
+	<!-- 공통관심사항이 정의된 빈을 등록 -->
+	<bean id="logAdvice" class="aop01.LogAdvice"/>
+	
+	<!-- AOP에 대한 설정 -->
+	<aop:config>
+		<!-- aop01패키지에 있는 UserDAO클래스의 get으로 시작하는 메소드가 호출되기 전에 실행되도록 포인트컷을 정의 
+			 (매개변수는 아무거나 상관없음:있거나 없거나) -->
+		<aop:pointcut expression="execution(* aop01.UserDAO.get*(..))" id="firstPointcut"/>
+		<!-- 공통관심사를 어느 시점에 적용할 것인지 -->
+		<!-- LogAdvice에 정의된 공통관심사항을 pointcut에 등록된 조건을 만족하는 메소드가 실행되기 전에 실행되도록 적용 -->
+		<aop:aspect id="myaspect01" ref="logAdvice">
+			<aop:before method="log" pointcut-ref="firstPointcut"/>
+		</aop:aspect>
+	</aop:config>
+
+</beans>

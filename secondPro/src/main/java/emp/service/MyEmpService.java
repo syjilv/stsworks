@@ -21,4 +21,6 @@ public interface MyEmpService {
 	List<MyEmpDTO> findByAddr(String addr);
 	//개인정보보기
 	MyEmpDTO getDetail(String id);
+	//트랜잭션 연습하기
+	void txinsert(MyEmpDTO user);
 }

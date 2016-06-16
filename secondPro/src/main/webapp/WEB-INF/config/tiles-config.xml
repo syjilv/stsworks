@@ -46,5 +46,8 @@
 	<definition name="mybatisDetail" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/emp/detail_jstl.jsp"/>
 	</definition>
+	<definition name="tx/input" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/emp/txmemberInput.jsp"/>
+	</definition>
 
 </tiles-definitions>
