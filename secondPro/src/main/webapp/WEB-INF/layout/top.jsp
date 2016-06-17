@@ -8,7 +8,7 @@
  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <%// MyEmpDTO user = (MyEmpDTO) session.getAttribute("loginuser"); %>
+  <% MyEmpDTO userInfo = (MyEmpDTO) session.getAttribute("userInfo"); %>
 </head>
 <body>
 	<div class="container-fluid">
@@ -23,12 +23,13 @@
 				 	<li class="divider-vertical"></li>
 					<li><a href="#">인사관리</a></li>
 					<li class="divider-vertical"></li>
-					<%//if(user==null){ %>
-						<li><a href="/template/view.do?pathurl=../member/login.jsp&action=member">로그인</a></li>
-					<%//}else{ %>
+					<%if(userInfo == null){ %>
+						<li><a href="login.do">로그인</a></li>
+					<%}else{ %>
 						<li class="divider-vertical"></li>
-						<li><a href="/template/logout.do">로그아웃</a></li>
-					<%//} %>
+						<li><a>${userInfo.id}(${userInfo.name})</a></li>
+						<li><a href="logout.do">로그아웃</a></li>
+					<%} %>
 				</ul>
 				<form class="navbar-form pull-right"
 						 method="get" 

@@ -41,7 +41,6 @@ public class MyEmpDAOImpl implements MyEmpDAO {
 		System.out.println(result + ". " + id + " 삭제 성공");
 	}
 
-	@Override
 	public MyEmpDTO login(String id, String pass) {
 		MyEmpDTO loginUser = null;
 		try {
@@ -66,6 +65,12 @@ public class MyEmpDAOImpl implements MyEmpDAO {
 	public MyEmpDTO getDetail(String id) {
 		MyEmpDTO user = template.queryForObject("select * from myemp where id = ?", new Object[]{id}, new MyEmpRowMapper());
 		return user;
+	}
+
+	@Override
+	public MyEmpDTO login(MyEmpDTO user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

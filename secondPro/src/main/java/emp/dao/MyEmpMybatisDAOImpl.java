@@ -36,9 +36,8 @@ public class MyEmpMybatisDAOImpl implements MyEmpDAO {
 	}
 
 	@Override
-	public MyEmpDTO login(String id, String pass) {
-		// TODO Auto-generated method stub
-		return null;
+	public MyEmpDTO login(MyEmpDTO user) {
+		return sqlSession.selectOne("kitri.myemp.login", user);
 	}
 
 	@Override

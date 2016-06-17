@@ -14,7 +14,7 @@ public interface MyEmpDAO {
 	//회원탈퇴
 	void delete(String id);
 	//로그인
-	MyEmpDTO login(String id,String pass);
+	MyEmpDTO login(MyEmpDTO user);
 	//회원목록보기
 	List<MyEmpDTO> getMemberList();
 	//주소로 검색

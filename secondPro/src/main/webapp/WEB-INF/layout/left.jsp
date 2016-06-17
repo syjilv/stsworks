@@ -1,3 +1,4 @@
+<%@page import="emp.dto.MyEmpDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" session="true" pageEncoding="EUC-KR"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -6,9 +7,19 @@
 <title>Insert title here</title>
 </head>
 <body>
+<% MyEmpDTO userInfo = (MyEmpDTO) session.getAttribute("userInfo"); %>
+
 	<div>
 		<h3>메인페이지<br/>(어노테이션)</h3>
+		<hr/>
+		<% if(userInfo != null) { %>
+			<h5>아이디 : ${userInfo.id}</h5>
+			<h5>이  름 : ${userInfo.name}</h5>
+			<h5><a href="logout.do">로그아웃</a></h5>
+		<% } else { %>
 
+			<h5><a href="login.do">로그인</a></h5>
+		<% } %>
 		<hr/>
 		<h5><a href="test.do">스프링 웹 MVC연동하기</a></h5>
 		<h5><a href="insert.do">회원가입</a></h5>

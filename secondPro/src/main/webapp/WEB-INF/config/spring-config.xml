@@ -79,5 +79,17 @@
 		<aop:advisor id="txadvisor" advice-ref="txAdvice" pointcut-ref="trans"/>
 	</aop:config>
 
-	
+	<!-- 인터셉터 등록 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/count.do"/>
+			<mapping path="/insert.do"/>
+			<beans:bean class="etc.controller.TimeCheckInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/mybatisSearch.do"/>
+			<mapping path="/mybatisList.do"/>
+			<beans:bean class="etc.controller.LoginCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
 </beans:beans>

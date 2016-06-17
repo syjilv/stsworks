@@ -24,4 +24,7 @@
 	<select id="read" resultType="emp" parameterType="String">
 		select * from myemp where id = #{id}
 	</select>
+	<select id="login" resultType="emp" parameterType="emp">
+		select * from myemp where id = #{id} and pass = #{pass}
+	</select>
 </mapper>
