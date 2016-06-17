@@ -17,8 +17,8 @@ public class InsertController {
 	MyEmpService service;
 	
 	@RequestMapping(value="/insert.do", method=RequestMethod.GET)
-	public String showPage() {
-		return "input/form";
+	public ModelAndView showPage() {
+		return new ModelAndView("input/form", "command", new MyEmpDTO());
 	}
 	
 	@RequestMapping(value="/insert.do", method=RequestMethod.POST)

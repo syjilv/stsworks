@@ -16,7 +16,7 @@
 		<put-attribute name="content" value="/WEB-INF/views/result.jsp" />
 	</definition>
 	<definition name="input/form" extends="mainTemplate">
-		<put-attribute name="content" value="/WEB-INF/emp/memberInput.jsp" />
+		<put-attribute name="content" value="/WEB-INF/emp/mybatismemberInput.jsp" />
 	</definition>
 	<definition name="search/form" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/emp/search.jsp" />
@@ -50,6 +50,9 @@
 	</definition>
 	<definition name="login/input" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/emp/login.jsp" />
+	</definition>
+	<definition name="i18nTest" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/views/message.jsp" />
 	</definition>
 
 </tiles-definitions>

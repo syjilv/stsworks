@@ -19,7 +19,7 @@
 
 	<!-- ============ 뷰 리졸버에 대한 등록(기본 파일시스템으로 연결,ㅡ tiles 기반)  ========= -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="prefix" value="/WEB-INF/" />
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="2" />
 	</beans:bean>
@@ -48,6 +48,7 @@
 
 	<context:component-scan base-package="kr.kitri" />
 	<context:component-scan base-package="emp" />
+	<context:component-scan base-package="etc" />
 	
 	<!-- ============ Mybatisc  ========= -->
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -79,11 +80,10 @@
 		<aop:advisor id="txadvisor" advice-ref="txAdvice" pointcut-ref="trans"/>
 	</aop:config>
 
-	<!-- 인터셉터 등록 -->
+	<!-- ========== 인터셉터 등록 ======== -->
 	<interceptors>
 		<interceptor>
-			<mapping path="/count.do"/>
-			<mapping path="/insert.do"/>
+			<mapping path="/emp/*"/>
 			<beans:bean class="etc.controller.TimeCheckInterceptor"/>
 		</interceptor>
 		<interceptor>
@@ -91,5 +91,22 @@
 			<mapping path="/mybatisList.do"/>
 			<beans:bean class="etc.controller.LoginCheckInterceptor"/>
 		</interceptor>
+		<interceptor>
+			<mapping path="/insert.do"/>
+			<beans:bean class="etc.controller.LangCheckInterceptor"/>
+		</interceptor>
 	</interceptors>
+	
+	<!-- =========== 다국어지원 ========== -->
+	<!-- .properties 파일에 입력한 내용을 읽어들여서 적용할 수 있도록 하는 클래스 등록 -->
+	<beans:bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>/WEB-INF/message/message</beans:value>
+			</beans:list>
+		</beans:property>
+		<beans:property name="defaultEncoding" value="UTF-8"></beans:property>
+	</beans:bean>
+	<!-- Locale정보를 확인하기 위한 클래스 등록(쿠키정보에서 Locale 정보를 확인 -->
+	<beans:bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"></beans:bean>
 </beans:beans>

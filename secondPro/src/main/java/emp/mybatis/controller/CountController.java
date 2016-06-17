@@ -11,7 +11,7 @@ public class CountController {
 	@Autowired
 	MyEmpService service;
 	
-	@RequestMapping("/count.do")
+	@RequestMapping("/emp/count.do")
 	public String main() {
 		int result = service.count();
 		System.out.println("=====================================================" + result);
