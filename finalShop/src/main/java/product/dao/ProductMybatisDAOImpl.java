@@ -15,11 +15,13 @@ public class ProductMybatisDAOImpl implements ProductDAO {
 
 	@Override
 	public List<ProductDTO> productlist(String category) {
+		System.out.println("mybatis");
 		return sqlsession.selectList("finalshop.product.list", category);
 	}
 
 	@Override
 	public List<ProductDTO> searchTopProduct() {
+		System.out.println("mybatis");
 		return sqlsession.selectList("finalshop.product.toplist");
 	}
 }

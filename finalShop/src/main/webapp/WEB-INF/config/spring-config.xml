@@ -12,6 +12,10 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
+	<context:component-scan base-package="kr.kitri.finalshop" />
+	<context:component-scan base-package="product" />
+
+
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -41,7 +45,6 @@
 		<beans:property name="order" value="1" />
 	</beans:bean>
 
-
 	<beans:bean id="con"
 		class="org.springframework.jndi.JndiObjectFactoryBean">
 		<beans:property name="jndiName" value="jdbc/myspring" />
@@ -52,16 +55,16 @@
 		<beans:property name="dataSource" ref="con" />
 	</beans:bean>
 
-	<context:component-scan base-package="kr.kitri.finalshop" />
-	<context:component-scan base-package="product" />
-	
-		<!-- ============ Mybatisc  ========= -->
+
+
+	<!-- ============ Mybatisc ========= -->
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<beans:property name="dataSource" ref="con"/>
-		<beans:property name="configLocation" value="/WEB-INF/config/mybatis-config.xml"/>
+		<beans:property name="dataSource" ref="con" />
+		<beans:property name="configLocation"
+			value="/WEB-INF/config/mybatis-config.xml" />
 	</beans:bean>
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<beans:constructor-arg ref="sqlSessionFactory"/>
+		<beans:constructor-arg ref="sqlSessionFactory" />
 	</beans:bean>
 
 </beans:beans>

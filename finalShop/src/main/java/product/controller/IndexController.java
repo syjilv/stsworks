@@ -20,6 +20,7 @@ public class IndexController {
 		ModelAndView mav = new ModelAndView();
 		List<ProductDTO> toplist = service.searchTopProduct();
 		List<ProductDTO> list = service.productlist("%");
+		System.out.println("index");
 		mav.addObject("toplist", toplist);
 		mav.addObject("list", list);
 		mav.setViewName("index");

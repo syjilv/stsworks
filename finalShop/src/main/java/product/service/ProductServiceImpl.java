@@ -19,11 +19,14 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public List<ProductDTO> productlist(String category) {
+		System.out.println("service");
 		return batis.productlist(category);
 	}
 
 	@Override
 	public List<ProductDTO> searchTopProduct() {
+		System.out.println("service");
+
 		return batis.searchTopProduct();
 	}
 }
