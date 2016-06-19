@@ -12,21 +12,16 @@ import product.dto.ProductDTO;
 @Service
 public class ProductServiceImpl implements ProductService {
 	@Autowired
-	@Qualifier("productmybatis")
-	ProductDAO batis;
 	@Qualifier("productdao")
 	ProductDAO dao;
 	
 	@Override
 	public List<ProductDTO> productlist(String category) {
-		System.out.println("service");
-		return batis.productlist(category);
+		return dao.productlist(category);
 	}
 
 	@Override
 	public List<ProductDTO> searchTopProduct() {
-		System.out.println("service");
-
-		return batis.searchTopProduct();
+		return dao.searchTopProduct();
 	}
 }

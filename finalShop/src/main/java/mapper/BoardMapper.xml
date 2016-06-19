@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="finalshop.board">
+
+	<select id="count" resultType="int">
+		select count(*) from TB_BOARD where DEL_FLG = 'N'
+	</select>
+	
+	<select id="list" resultType="board" parameterType="int">
+		select u.BOARD_NO, u.MEM_ID, u.TITLE, u.TEXT, u.COUNT, u.DEL_FLG, u.REG_DTM, u.MOD_DTM, u.MEM_NM 
+		from (select ROWNUM n, t.* 
+		from (select b.*, m.MEM_NM as MEM_NM from TB_BOARD b, TB_MEM m where b.MEM_ID = m.MEM_ID and DEL_FLG = 'N' 
+		order by to_number(BOARD_NO) desc) t 
+		where ROWNUM <![CDATA[<]]>= (#{page_no} * 10)) u 
+		where u.n <![CDATA[>]]>= (#{page_no} * 10 - 9)
+	</select>
+
+	<select id="view" resultType="board" parameterType="String">
+		select b.*, m.MEM_NM from TB_BOARD b, TB_MEM m where b.MEM_ID = m.MEM_ID and BOARD_NO = #{board_no}
+	</select>
+	
+	<select id="write" parameterType="board">
+		insert into TB_BOARD values(SEQ_ID.NEXTVAL, #{mem_id}, #{title}, #{text}, 0, 'N', to_char(sysdate, 'YYYYMMDDHH24MISS'), null)
+	</select>
+	
+	<select id="modify" parameterType="board">
+		update TB_BOARD set TITLE = #{title}, TEXT = #{text}, MOD_DTM = to_char(sysdate, 'YYYYMMDDHH24MISS') where BOARD_NO = #{board_no}
+	</select>
+
+	<select id="viewCount" parameterType="String">
+		update TB_BOARD set COUNT = (COUNT + 1) where BOARD_NO = board_no
+	</select>
+	
+	<select id="delete" parameterType="String">
+		update TB_BOARD set DEL_FLG = 'Y' where BOARD_NO = #{board_no}
+	</select>
+	
+	
+	
+	
+	
+	
+</mapper>

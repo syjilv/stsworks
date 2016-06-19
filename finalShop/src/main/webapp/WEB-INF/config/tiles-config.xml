@@ -4,19 +4,31 @@
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
 	<definition name="mainTemplate" template="/WEB-INF/layout/layout.jsp">
-		<put-attribute name="header" value="/WEB-INF/layout/top.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
 	</definition>
-	
-	<definition name="indexTemplate" template="/WEB-INF/layout/indexLayout.jsp">
-		<put-attribute name="header" value="/WEB-INF/layout/top.jsp"/>
-	</definition>
-	<definition name="index" extends="indexTemplate">
-		<put-attribute name="toplist" value="/WEB-INF/product/topproduct.jsp"/>
-		<put-attribute name="content" value="/WEB-INF/product/prdlist.jsp"/>
-	</definition>
-	
+
 	<definition name="prdlist" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/product/prdlist.jsp"/>
 	</definition>
 	
+	<definition name="login" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/member/login.jsp"/>
+	</definition>
+	
+	<definition name="board/view" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/board/view.jsp"/>
+	</definition>	
+
+	<definition name="board/write" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/board/write.jsp"/>
+	</definition>	
+
+	<definition name="board/modify" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/board/modify.jsp"/>
+	</definition>	
+
+	<definition name="board/list" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/board/list.jsp"/>
+	</definition>	
+
 </tiles-definitions>
