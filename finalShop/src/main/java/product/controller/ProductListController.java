@@ -24,11 +24,14 @@ public class ProductListController {
 		if (category.equals("%")) {
 			List<ProductDTO> toplist = service.searchTopProduct();
 			mav.addObject("toplist", toplist);
+			mav.setViewName("product/index");
+		} else {
+			mav.setViewName("product/list");
 		}
 
 		List<ProductDTO> list = service.productlist(category);
 		mav.addObject("list", list);
-		mav.setViewName("prdlist");
+
 		return mav;
 	}
 }

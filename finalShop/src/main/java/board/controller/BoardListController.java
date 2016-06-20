@@ -18,8 +18,7 @@ public class BoardListController {
 	BoardService service;
 
 	@RequestMapping(value="/board/board_list.do", method=RequestMethod.GET)
-	public ModelAndView runBoardList(@RequestParam(value="page_no", defaultValue="1") int page_no,
-			@RequestParam(value="board_no", required=false) String board_no) {
+	public ModelAndView runBoardList(@RequestParam(value="page_no", defaultValue="1") int page_no) {
 		ModelAndView mav = new ModelAndView();
 
 		int count = service.count();
@@ -27,8 +26,7 @@ public class BoardListController {
 
 		mav.addObject("count", count);
 		mav.addObject("list", list);
-		mav.addObject("pageNo", page_no);
-		mav.addObject("boardNo", board_no);
+		mav.addObject("page_no", page_no);
 		mav.addObject("mode","list");
 		mav.setViewName("board/list");
 

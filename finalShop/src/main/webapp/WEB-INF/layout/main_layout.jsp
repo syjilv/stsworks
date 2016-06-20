@@ -10,12 +10,9 @@
 <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-<c:if test="${param.category eq null}">
-	<link href="/finalshop/resources/common/css/style.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="/finalshop/resources/common/js/modernizr.custom.79639.js"></script>
-</c:if>
 </head>
 <body>
+<!-- 메뉴 Active 스크립트 -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		var url = $(location).attr("pathname") + $(location).attr("search");

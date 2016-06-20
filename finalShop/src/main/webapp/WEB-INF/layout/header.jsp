@@ -42,22 +42,3 @@
 		</div>
 	</div>
 </div>
-<div class="section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<c:set var="now" value="<%= new java.util.Date() %>"/>
-				${now.time}
-				<fmt:parseDate var="writeDtm" value="20160618235555" pattern="yyyyMMddHHmmss" />
-			
-					<fmt:parseNumber var="gap" value="${now.time - writeDtm.time / (1000*60*60*24)}"/>
-											<fmt:formatDate value="${writeDtm}" type="both" pattern="HH:mm:ss" />
-					${now}
-					${writeDtm.time}
-
-
-
-			</div>
-		</div>
-	</div>
-</div>											

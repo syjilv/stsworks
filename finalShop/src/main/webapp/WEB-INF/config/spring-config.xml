@@ -67,11 +67,5 @@
 	</beans:bean>
 
 	<!-- 로그인 인터셉터 -->
-	<interceptors>
-		<interceptor>
-			<mapping path="/board/*"/>
-			<beans:bean class="etc.controller.LoginCheckInterceptor"/>
-		</interceptor>
-	</interceptors>
 
 </beans:beans>

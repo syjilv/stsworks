@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import board.dto.BoardDTO;
@@ -30,7 +31,11 @@ public class ViewController {
 	}
 	
 	@RequestMapping(value="/view.do", method=RequestMethod.GET)
-	public ModelAndView runView(int pageNo, String boardNo, String mode, String target, String keyword) {
+	public ModelAndView runView(@RequestParam(value="board_no", defaultValue="1") String board_no,
+			int page_no,
+			String mode,
+			String target,
+			String keyword) {
 		ModelAndView mav = new ModelAndView();
 		service.viewCount(boardNo);	// Á¶È¸¼ö
 		BoardDTO board = service.view(boardNo);

@@ -1,36 +1,25 @@
 <%@page import="member.dto.MemberDTO"%>
 <%@page import="board.dto.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" session="true" import="java.util.*"%>
-<html>
-<head>
-<meta charset="EUC-KR">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-<link href="http://pingendo.github.io/pingendo-bootstrap/themes/default/bootstrap.css" rel="stylesheet" type="text/css">
-</head>
 
-<body>
-	<script type="text/javascript">
-		function del(boardNo) {
-		    if (confirm("삭제하시겠습니까?") == true) {
-			    var delform = document.createElement("form");
-			    delform.setAttribute("method", "POST");
-			    delform.setAttribute("action", "del.do");
-		        var field = document.createElement("input");
-				field.setAttribute("type", "hidden");
-				field.setAttribute("name", "boardNo");
-				field.setAttribute("value", boardNo);
-		        delform.appendChild(field);
-			    document.body.appendChild(delform);
-			    delform.submit();
-		    } else {
-		        alert('취소되었습니다.');
-		    }
-		}
-		
-	</script>
+<script type="text/javascript">
+	function del(boardNo) {
+	    if (confirm("삭제하시겠습니까?") == true) {
+		    var delform = document.createElement("form");
+		    delform.setAttribute("method", "POST");
+		    delform.setAttribute("action", "del.do");
+	        var field = document.createElement("input");
+			field.setAttribute("type", "hidden");
+			field.setAttribute("name", "boardNo");
+			field.setAttribute("value", boardNo);
+	        delform.appendChild(field);
+		    document.body.appendChild(delform);
+		    delform.submit();
+	    } else {
+	        alert('취소되었습니다.');
+	    }
+	}
+</script>
 	<%
 		BoardDTO board = (BoardDTO) request.getAttribute("board");
 		int pageNo = (int) request.getAttribute("pageNo");
@@ -84,9 +73,9 @@
 						<div class="panel-heading">
 								<h3 style="word-wrap:break-word;"><span class="fa fa-fw fa-star"></span>&nbsp;<%= newTitle %></h3>
 								<h4 class="text-muted">
-									<span class="fa fa-fw fa-flip-horizontal fa-slack"></span>&nbsp;<span class="text-primary"><%= board.getBoardNo() %></span>&nbsp;&nbsp;
-									<span class="fa fa-fw fa-user"></span>&nbsp;<span class="text-primary"><%= board.getMemNm() %>(<%= board.getMemId() %>)</span>&nbsp;&nbsp;
-									<span class="fa fa-fw fa-eye"></span>&nbsp;<span class="text-primary"><%= board.getCount() %></span>&nbsp;&nbsp;
+									<span class="fa fa-fw fa-flip-horizontal fa-slack"></span>&nbsp;<span class="text-primary">${board.board_no}</span>&nbsp;&nbsp;
+									<span class="fa fa-fw fa-user"></span>&nbsp;<span class="text-primary">${board.mem_nm}(${board.mem_id})</span>&nbsp;&nbsp;
+									<span class="fa fa-fw fa-eye"></span>&nbsp;<span class="text-primary">${board.count}</span>&nbsp;&nbsp;
 									<span class="fa fa-fw fa-clock-o"></span>&nbsp;<span class="text-primary"><%= regDtm %></span>
 								</h4>
 						</div>
@@ -114,7 +103,7 @@
 
 </html>
 <% if(mode.equals("search")) { %>
-	<jsp:include page="/board_search.do"></jsp:include>
+	<jsp:include page="/finalshop/board/board_search.do"></jsp:include>
 <% } else { %>
-	<jsp:include page="/board_list.do"></jsp:include>
+	<jsp:include page="/finalshop/board/board_list.do"></jsp:include>
 <% } %>

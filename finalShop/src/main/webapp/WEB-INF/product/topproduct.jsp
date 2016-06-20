@@ -3,8 +3,7 @@
 <div class="ia-container">
 	<c:forEach var="prd" items="${toplist}" varStatus="status">
 		<figure>
-			<img src="/finalshop/resources/images/product/${prd.img_gen_file_nm}"
-				alt="${prd.prd_nm}" />
+			<img src="/finalshop/resources/images/product/${prd.img_gen_file_nm}" />
 			<c:choose>
 				<c:when test="${status.first}">
 					<input type="radio" name="radio-set" checked="checked" />
