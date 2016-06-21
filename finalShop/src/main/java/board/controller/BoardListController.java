@@ -17,7 +17,7 @@ public class BoardListController {
 	@Autowired
 	BoardService service;
 
-	@RequestMapping(value="/board/board_list.do", method=RequestMethod.GET)
+	@RequestMapping(value="/board/list.do", method=RequestMethod.GET)
 	public ModelAndView runBoardList(@RequestParam(value="page_no", defaultValue="1") int page_no) {
 		ModelAndView mav = new ModelAndView();
 

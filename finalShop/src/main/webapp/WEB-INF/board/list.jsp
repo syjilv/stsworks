@@ -76,8 +76,6 @@ function searchCheck() {
 													</c:otherwise>
 												</c:choose>
 												<%-- 제목 싱글쿼트, 태그, 공백 처리 --%>
-												<c:set var="singlequote" value="'"/>
-    											<c:set var="backslash" value="\\"/>
 												<c:set var="new_title" value="${board.title}"/>
 												<c:set var="new_title" value="${fn:replace(new_title, \"′\", \"'\")}"/>
 												<c:set var="new_title" value="${fn:replace(new_title, \"\\\u0020\", \"&nbsp;\")}"/>

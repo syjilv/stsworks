@@ -30,7 +30,7 @@
 	</definition>	
 
 	<definition name="board/view" extends="viewTemplate">
-		<put-attribute name="content" value="/WEB-INF/board/view.jsp"/>
+		<put-attribute name="middle" value="/WEB-INF/board/view.jsp"/>
 		<put-attribute name="content" value="/WEB-INF/board/list.jsp"/>
 	</definition>	
 
