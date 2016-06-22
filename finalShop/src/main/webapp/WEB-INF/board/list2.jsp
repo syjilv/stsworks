@@ -144,6 +144,9 @@ function searchCheck() {
 				<div class="col-md-3">
 					<a class="btn btn-default btn-lg" href="board_list.do?page_no=${page_no}"><span class="fa fa-fw fa-th-list"></span> 목록</a>
 				</div>
+				
+				
+				
 				<!-- 검색폼을 난 왜 붙여서 고생하는가 -->
 				<div class="col-md-6">
 					<form role="form" name="searchform" action="board_search.do" method="GET" onsubmit="return searchCheck()">
@@ -190,7 +193,7 @@ function searchCheck() {
 						</div>
 					</form>
 				</div>
-				 검색폼 끝 -->
+				<!--  검색폼 끝 -->
 				<div class="col-md-3 text-right">
 					<a class="btn btn-lg btn-primary" href="write.do"><span class="fa fa-fw fa-pencil"></span> 글쓰기</a>
 				</div>

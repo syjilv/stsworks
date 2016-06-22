@@ -74,11 +74,11 @@
 				</div>
 			</div>
 		</div>
-		<!-- 글 작성자가 아닐 경우 수정 / 삭제 버튼이 보이지 않음 -->
+
 			<div class="row">
 				<div class="col-md-6">
 					<c:choose>
-						<c:when test="${mode eq \"search\"}">
+						<c:when test="${mode eq 'search'}">
 							<a class="btn btn-default btn-lg" href="/finalshop/board/list.do?mode=${mode}$target=${target}$keyword=${keyword}&page_no=${page_no}">
 						</c:when>
 						<c:otherwise>
@@ -88,6 +88,7 @@
 					<span class="fa fa-fw fa-th-list"></span> 목록</a>
 				</div>
 				<div class="col-md-6 text-right">
+					<%-- 글 작성자가 아닐 경우 수정 / 삭제 버튼이 보이지 않음 --%>
 					<c:if test="${sessionScope.member.mem_id eq board.mem_id}">
 						<a class="btn btn-lg btn-warning" href="/finalshop/board/modify.do?board_no=${board.board_no}"><span class="fa fa-fw fa-eraser"></span> 수정</a>
 						<a class="btn btn-lg btn-danger" href="javascript:del(${board.board_no});"><span class="fa fa-fw fa-trash"></span> 삭제</a>
