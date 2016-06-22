@@ -86,7 +86,7 @@ function searchCheck() {
 												<c:set var="new_title" value="${fn:substring(newTitle, 0, 50)}..."/>
 											</c:if>
 
-											<a href="view.do?${modeParam}&page_no=${page_no}&board_no=${board.board_no}">${new_title}</a>									</a>
+											<a href="view.do?${modeParam}page_no=${page_no}&board_no=${board.board_no}">${new_title}</a>									</a>
 
 											<%-- 작성한지 12시간 이내면 New 뱃지 달아주기 --%>
 											<c:set var="now" value="<%= new java.util.Date() %>"/>
@@ -127,7 +127,7 @@ function searchCheck() {
 		</div>
 		<div class="row">
 			<div class="col-md-3">
-				<a class="btn btn-default btn-lg" href="/finalshop/board/list.do?page_no=${page_no}"><span class="fa fa-fw fa-th-list"></span> 목록</a>
+				<a class="btn btn-default btn-lg" href="/finalshop/board/list.do"><span class="fa fa-fw fa-th-list"></span> 최신목록</a>
 			</div>
 			<!--  검색폼 끝 -->
 			<div class="col-md-3 text-right">
@@ -166,7 +166,7 @@ function searchCheck() {
 								<li class="disabled"><a href="#">Prev</a></li>
 							</c:when>
 							<c:otherwise>
-								<li><a href="/finalshop/board/list.do?${modeParam}&page_no=${page_no - 1}">Prev</a></li>
+								<li><a href="/finalshop/board/list.do?${modeParam}page_no=${page_no - 1}">Prev</a></li>
 							</c:otherwise>
 						</c:choose>
 
@@ -174,7 +174,7 @@ function searchCheck() {
 						<c:set var="pageSize" value="5"/>
 						<%-- 페이지 수가 5페이지가 안될 경우 --%>
 						<c:if test="${(startPage + 4) gt lastPage}">
-							<c:set var="pageSize" value="${lastPage - startPage + 1}"/>
+						<c:set var="pageSize" value="${lastPage - startPage + 1}"/>
 						</c:if>
 						<%-- 페이징 표시 및 링크 처리 --%>
 						<c:forEach var="i" begin="0" end="${pageSize - 1}" step="1">
@@ -188,7 +188,7 @@ function searchCheck() {
 								</c:otherwise>
 							</c:choose>
 										<a href="/finalshop/board/list.do?${modeParam}page_no=${showPage}">${showPage}</a>
-									</li>	
+									</li>
 						</c:forEach>
 						
 						<%-- Next 처리 --%>

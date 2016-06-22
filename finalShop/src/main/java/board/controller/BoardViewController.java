@@ -33,22 +33,27 @@ public class BoardViewController {
 		ModelAndView mav = new ModelAndView();
 
 		if(board_no == null) {
-			mav.setViewName("redirect:/board/board_list.do");
+			mav.setViewName("redirect:/finalshop/board/list.do");
 		} else {
 			service.viewCount(board_no); // Á¶È¸¼ö
 			BoardDTO board = service.view(board_no);
+			int count = 0;
 			List<BoardDTO> list = null;
-
+			
 			if(mode.equals("search")) {
+				count = service.searchCount(target, keyword);
 				list = service.search(target, keyword, page_no);			
 				mav.addObject("target", target);
 				mav.addObject("keyword", keyword);
 			} else {
+				count = service.count();
 				list = service.list(page_no);
 			}
+
 			mav.addObject("board", board);
 			mav.addObject("list", list);
 			mav.addObject("page_no", page_no);
+			mav.addObject("count", count);
 			mav.addObject("mode", mode);
 			mav.setViewName("board/view");
 		}

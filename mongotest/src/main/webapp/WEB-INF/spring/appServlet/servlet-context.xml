@@ -24,7 +24,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="spring.data.mongodb" />
-	<mongo:mongo host="127.0.0.1" port="27017">
+	<mongo:mongo host="52.78.11.106" port="27017">
 		
 	</mongo:mongo>
 	
