@@ -39,7 +39,7 @@ public class ScoreMongoDAOImple implements ScoreMongoDAO {
 	@Override
 	public List<ScoreDTO> findCriteria(String field, String value) {
 		Criteria criteria = new Criteria(field);
-		criteria.regex(value);
+		criteria.gt(Integer.parseInt(value));
 		Query query = new Query(criteria);
 		List<ScoreDTO> datalist = mongoTemplate.find(query, ScoreDTO.class, "score");
 		return datalist;
@@ -60,7 +60,7 @@ public class ScoreMongoDAOImple implements ScoreMongoDAO {
 		update.set("spring", doc.getSpring());
 		update.set("bonus", doc.getBonus());
 		
-		mongoTemplate.updateMulti(query, update, ScoreDTO.class, "score");
+		mongoTemplate.updateMulti(query, update, "score");
 	}
 
 	@Override
