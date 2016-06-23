@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,26 +11,26 @@
 <body>
 	<div class="container-fluid">
 			<form role="form" class="form-horizontal"
-				action="/mongodb/score/insert" method="POST">
+				action="/mongodb/score/update" method="POST">
 				<fieldset>
-					<div id="legend">
-						<legend>아래 양식을 작성해주세요.</legend>
-					</div>
 					<div class="form-group">
 						<!-- 부서코드 -->
 						<label class="control-label col-sm-2" for="orgcode">아이디</label>
 						<div class="col-sm-3">
 							<input type="text" id="orgcode" name="id"
-								placeholder="아이디" class="form-control"
+								placeholder="아이디" class="form-control" value="${doc.id}"
 								 required>
 						</div>
 					</div>
+
+					
+					
 					<div class="form-group">
 						<!-- 부서명-->
 						<label class="control-label col-sm-2" for="orgname">성명</label>
 						<div class="col-sm-3">
 							<input type="text" id="name" name="name"
-								placeholder="성명" class="form-control" minlength="2" required>
+								placeholder="성명" class="form-control" minlength="2" value="${doc.name}"required>
 
 						</div>
 					</div>
@@ -40,8 +39,7 @@
 						<label class="control-label col-sm-2" for="orgloc">부서명</label>
 						<div class="col-sm-3">
 							<input type="text" id="dept" name="dept"
-								placeholder="부서명" class="form-control" minlength="2" >
-
+								placeholder="부서명" class="form-control" value="${doc.dept}" minlength="2" >
 						</div>
 					</div>
 					<div class="form-group">
@@ -50,8 +48,7 @@
 						<div class="col-sm-3">
 							<input type="text" id="addr" name="addr" 
 							placeholder="주소"
-								class="form-control" minlength="2" required>
-
+								class="form-control" value="${doc.addr}" required>
 						</div>
 					</div>
 					<div class="form-group">
@@ -97,7 +94,7 @@
 						<div class="col-sm-3">
 							<input type="text" id="bonus" name="bonus" 
 							placeholder="보너스"
-								class="form-control" minlength="4" required value="10000">
+								class="form-control" minlength="4" required value="value="${doc.bonus}">
 
 						</div>
 					</div>
@@ -105,7 +102,7 @@
 					<div class="form-group">
 						<!-- Button -->
 						<div class="col-sm-3 col-sm-offset-2">
-							<input type="submit" value="가입하기" class="btn btn-success"/>
+							<input type="submit" value="수정하기" class="btn btn-success"/>
 							
 						</div>
 					</div>

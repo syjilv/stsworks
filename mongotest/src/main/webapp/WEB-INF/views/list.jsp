@@ -9,8 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% List<Score> mongolist  =
-			(List<Score>)request.getAttribute("mongolist"); 
+<% List<ScoreDTO> mongolist  = (List<ScoreDTO>)request.getAttribute("mongolist"); 
 	   int size = mongolist.size();	%>
 	<h1>Score(Mongo)</h1>
 	
@@ -22,21 +21,22 @@
 			<th>삭제</th>
 		</tr>
 		<%for(int i = 0;i<size;i++){
-			Score user = mongolist.get(i);%>
+			ScoreDTO user = mongolist.get(i);%>
 			<tr>
-				<td><a href="mybatisRead.do?id=<%=user.getId()%>&action=read"><%= user.getId() %></a></td>
+				<td><a href="/mongodb/score/detail?key=id&value=<%=user.getId()%>&action=READ"><%= user.getId() %></a></td>
 				<td><%= user.getBonus()%></td>
 				<td><%= user.getName() %></td>
 				<td><%= user.getAddr() %></td>
 				<td><%= user.getDept()%></td>
 				<td>
-		<a href="mybatisDel.do?id=<%=user.getId() %>">삭제</a></td>
+		<a href="/mongodb/score/delete?key=id&value=<%=user.getId() %>">삭제</a></td>
 			</tr>
 			
 		<%} %>
 		<tr>
-			<td colspan="6"><a href="/mongodb/mongo/list?pageNo=1">1</a>
-			<a href="/mongodb/mongo/list?pageNo=2">2</a>
+			<td colspan="6"><a href="/mongodb/score/list?pageNo=0">1</a>
+			<a href="/mongodb/score/list?pageNo=1">2</a>
+			<a href="/mongodb/score/list?pageNo=2">3</a>
 			</td>
 		</tr>
 	</table>
