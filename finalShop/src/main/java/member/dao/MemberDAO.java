@@ -4,5 +4,5 @@ import member.dto.MemberDTO;
 
 public interface MemberDAO {
 	//·Î±×ÀÎ
-	MemberDTO login(MemberDTO member);
+	MemberDTO login(String mem_id, String pwd);
 }

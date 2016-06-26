@@ -1,11 +1,13 @@
 package member.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import member.dto.MemberDTO;
@@ -18,24 +20,30 @@ public class LoginController {
 
 	// ·Î±×¾Æ¿ô
 	@RequestMapping("/member/logout.do")
-	public String logout(HttpSession session, String ref) {
-		session.invalidate();
-		return "redirect:/";
+	public String logout(HttpServletRequest request, HttpSession session) {
+		String ref = request.getHeader("referer");
+		session.removeAttribute("member");
+		return "redirect:" + ref;
 	}
 
 	@RequestMapping(value = "/member/login.do", method = RequestMethod.GET)
-	public ModelAndView loginForm() {
+	public ModelAndView loginForm(@RequestParam(value = "ref", required = false) String ref, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login");
+		if(ref == null) { 
+			ref = request.getHeader("referer");
+		}
+		mav.addObject("ref", ref);
+		mav.setViewName("member/login");
 		return mav;
 	}
 	
 	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
-	public String runLogin(HttpSession session, MemberDTO member, String ref) {
-		MemberDTO mem = service.login(member);
-		if (mem != null) {
-			session.setAttribute("member", mem);
+	public String runLogin(HttpSession session, String mem_id, String pwd, String ref) {
+		MemberDTO member = service.login(mem_id, pwd);
+		if (member != null) {
+			session.setAttribute("member", member);
 		}
-		return "redirect:/";
+		
+		return "redirect:" + ref;
 	}
 }

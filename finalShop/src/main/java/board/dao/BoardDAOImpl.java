@@ -1,27 +1,25 @@
 package board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import board.dto.BoardDTO;
-import board.dto.BoardRowMapper;
+import board.dto.ReplyDTO;
 
 @Repository("boarddao")
 public class BoardDAOImpl implements BoardDAO {
-	@Autowired
-	private JdbcTemplate template;
 
 	@Autowired
 	SqlSession sqlsession;
 
 	// 게시물 수 조회
 	@Override
-	public int count() {
-		return sqlsession.selectOne("finalshop.board.count");
+	public int listSize() {
+		return sqlsession.selectOne("finalshop.board.listSize");
 	}
 	
 	// 목록 조회
@@ -65,44 +63,54 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlsession.update("finalshop.board.delete", board_no);
 	}
 	
-	
+	// 검색결과 목록
 	@Override
-	public int searchCount(String target, String keyword) {
-		String sql = "select count(*) from TB_BOARD b, TB_MEM m where b.MEM_ID = m.MEM_ID and b.DEL_FLG = 'N' and ";
+	public int searchListSize(String target, String keyword) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("target", target);
+		map.put("keyword", keyword);
 		
-		if(target.equals("title")) {
-			sql += "b.TITLE like '%" + keyword + "%'";
-		} else if(target.equals("all")) {
-			sql += "(b.TITLE like '%" + keyword + "%' or b.TEXT like '%" + keyword + "%')";
-		} else if(target.equals("memNm")) {
-			sql += "m.MEM_NM like '%" + keyword + "%'";
-		} else if(target.equals("memId")) {
-			sql += "m.MEM_ID like '%" + keyword + "%'";
-		}
-
-		return template.queryForObject(sql, Integer.class);
+		return sqlsession.selectOne("finalshop.board.searchListSize", map);
 	}
 	
 	// 검색
 	@Override
-	public List<BoardDTO> search(String target, String keyword, int pageNo) {
-		String sql = "select u.BOARD_NO, u.MEM_ID, u.TITLE, u.TEXT, u.COUNT, u.DEL_FLG, u.REG_DTM, u.MOD_DTM, u.MEM_NM from "
-				   + "(select ROWNUM n, t.* from "
-				   + "(select b.*, m.MEM_NM as MEM_NM from TB_BOARD b, TB_MEM m where b.MEM_ID = m.MEM_ID and DEL_FLG = 'N' and ";
-		
-		if(target.equals("title")) {
-			sql += "b.TITLE like '%" + keyword + "%' order by to_number(BOARD_NO) desc) t ";
-		} else if(target.equals("all")) {
-			sql += "(b.TITLE like '%" + keyword + "%' or b.TEXT like '%" + keyword + "%') order by to_number(BOARD_NO) desc) t ";
-		} else if(target.equals("memNm")) {
-			sql += "m.MEM_NM like '%" + keyword + "%' order by to_number(BOARD_NO) desc) t ";
-		} else if(target.equals("memId")) {
-			sql += "m.MEM_ID like '%" + keyword + "%' order by to_number(BOARD_NO) desc) t ";
-		}
-		sql += "where ROWNUM <= " + (pageNo * 10) + ") u where u.n >= " + (pageNo * 10 - 9);
+	public List<BoardDTO> search(String target, String keyword, int page_no) {
 
-		return template.query(sql, new BoardRowMapper());
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("target", target);
+		map.put("keyword", keyword);
+		map.put("page_no", page_no);
+
+		return sqlsession.selectList("finalshop.board.search", map);
+	}
+
+	// 댓글 수 조회
+	@Override
+	public int replySize(String board_no) {
+		return sqlsession.selectOne("finalshop.board.replySize", board_no);
 	}
 	
-	
+	// 댓글 조회
+	@Override
+	public List<ReplyDTO> replyView(String board_no) {
+		return sqlsession.selectList("finalshop.board.replyView", board_no);
+	}
+	// 댓글 작성
+	@Override
+	public void replyWrite(ReplyDTO reply) {
+		reply.setReply(reply.getReply().replaceAll("'","′"));
+		sqlsession.insert("finalshop.board.replyWrite", reply);		
+	}
+	// 댓글 수정
+	@Override
+	public void replyModify(ReplyDTO reply) {
+		sqlsession.update("finalshop.board.replyModify", reply);
+		
+	}
+	// 댓글 삭제
+	@Override
+	public void replyDelete(String seq) {
+		sqlsession.update("finalshop.board.replyDelete", seq);
+	}
 }

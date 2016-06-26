@@ -21,7 +21,7 @@
 		<put-attribute name="content" value="/WEB-INF/product/prdlist.jsp"/>
 	</definition>
 	
-	<definition name="login" extends="mainTemplate">
+	<definition name="member/login" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/member/login.jsp"/>
 	</definition>
 	

@@ -11,11 +11,12 @@ public class BoardDTO{
 	private String reg_dtm;
 	private String mod_dtm;
 	private String mem_nm;
+	private int reply_size;
 
 	public BoardDTO() {}
 
 	public BoardDTO(String board_no, String mem_id, String title, String text, int count, String del_flg,
-			String reg_dtm, String mod_dtm, String mem_nm) {
+			String reg_dtm, String mod_dtm, String mem_nm, int reply_size) {
 		super();
 		this.board_no = board_no;
 		this.mem_id = mem_id;
@@ -26,6 +27,7 @@ public class BoardDTO{
 		this.reg_dtm = reg_dtm;
 		this.mod_dtm = mod_dtm;
 		this.mem_nm = mem_nm;
+		this.reply_size = reply_size;
 	}
 
 	public String getBoard_no() {
@@ -100,10 +102,20 @@ public class BoardDTO{
 		this.mem_nm = mem_nm;
 	}
 
+	public int getreply_size() {
+		return reply_size;
+	}
+
+	public void setreply_size(int reply_size) {
+		this.reply_size = reply_size;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardDTO [board_no=" + board_no + ", mem_id=" + mem_id + ", title=" + title + ", text=" + text
 				+ ", count=" + count + ", del_flg=" + del_flg + ", reg_dtm=" + reg_dtm + ", mod_dtm=" + mod_dtm
-				+ ", mem_nm=" + mem_nm + "]";
+				+ ", mem_nm=" + mem_nm + ", reply_size=" + reply_size + "]";
 	}
+
+
 }

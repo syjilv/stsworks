@@ -13,12 +13,13 @@
 		<div class="row">
 			<div class="col-md-12">
 				<form class="form-horizontal" role="form" name="loginform" method="post" action="/finalshop/member/login.do">
+					<input type="hidden" name="ref" value="${ref}"/>
 					<div class="form-group has-feedback">
 						<div class="col-sm-2 text-right">
-							<label path="memId" class="control-label">ID</label>
+							<label for="mem_id" class="control-label">ID</label>
 						</div>
 						<div class="col-sm-10">
-							<input type="text" class="form-control input-lg" path="memId"
+							<input type="text" class="form-control input-lg" id="mem_id"
 								name="mem_id" placeholder="ID" />
 						</div>
 					</div>

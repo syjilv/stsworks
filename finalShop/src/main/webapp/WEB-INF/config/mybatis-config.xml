@@ -7,6 +7,8 @@
 		<typeAlias type="product.dto.ProductDTO" alias="product"/>
 		<typeAlias type="member.dto.MemberDTO" alias="member"/>
 		<typeAlias type="board.dto.BoardDTO" alias="board"/>
+		<typeAlias type="board.dto.ReplyDTO" alias="reply"/>
+		
 	</typeAliases>
 	<mappers>
 		<mapper resource="mapper/ProductMapper.xml"/>

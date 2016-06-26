@@ -67,5 +67,12 @@
 	</beans:bean>
 
 	<!-- 로그인 인터셉터 -->
-
+	<interceptors>
+		<interceptor>
+			<mapping path="/board/write.do"/>
+			<mapping path="/board/modify.do"/>
+			<beans:bean class="etc.controller.LoginCheckInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>

@@ -5,5 +5,5 @@ import member.dto.MemberDTO;
 public interface MemberService {
 
 	//·Î±×ÀÎ
-	MemberDTO login(MemberDTO member);
+	MemberDTO login(String mem_id, String pwd);
 }

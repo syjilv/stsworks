@@ -1,5 +1,7 @@
 package member.dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -13,7 +15,11 @@ public class MemberDAOImpl implements MemberDAO {
 
 	// ·Î±×ÀÎ
 	@Override
-	public MemberDTO login(MemberDTO member) {
-		return sqlsession.selectOne("finalshop.member.login", member);
+	public MemberDTO login(String mem_id, String pwd) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("mem_id", mem_id);
+		map.put("pwd", pwd);
+		return sqlsession.selectOne("finalshop.member.login", map);
 	}
 }

@@ -1,14 +1,12 @@
-<%@page import="member.dto.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" session="true" import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" session="true"%>
 <script>
-<% 	MemberDTO mem = (MemberDTO) session.getAttribute("mem");
-
 	// 임의 접근 차단 - 세션이 없을 경우 로그인으로 리다이렉트
-	if(mem == null) { %>
+	var ses = ${member.mem_id};
+	if(ses == null) {
 		alert('로그인 해주세요.');
-		location.href='login.do?ref=write';
-	<%	} %>
-	
+		location.href='/finalshop/member/login.do';
+	}
+
 	// 전송 전 체크
 	function writeCheck() {
 		// 제목, 내용 사이즈 체크하는 정규식(아스키코드는 1, 유니코드는 3으로 계산)
@@ -38,7 +36,7 @@
 	// 취소시 컨펌
 	function cancelCheck() {
 	    if (confirm("취소하시겠습니까?") == true) {
-			location.href='board_list.do';
+			location.href='/finalshop/board/list.do';
 	    }
 	}
 	
@@ -53,14 +51,14 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<form class="form-horizontal" role="form" name="writeform" action="write.do" method="POST" onsubmit="return writeCheck()">
+				<form class="form-horizontal" role="form" name="writeform" action="/finalshop/board/write.do" method="POST" onsubmit="return writeCheck()">
 					<div class="form-group">
 						<div class="col-md-2 text-right">
 							<label for="title" class="control-label">제목</label>
 						</div>
 						<div class="col-md-10">
 							<input type="text" class="form-control input-lg" name="title" id="title" placeholder="제목">
-							<input type="hidden" name="memId" id="memId" value="${mem.memId}">
+							<input type="hidden" name="mem_id" id="mem_id" value="${member.mem_id}">
 						</div>
 					</div>
 					<div class="form-group">

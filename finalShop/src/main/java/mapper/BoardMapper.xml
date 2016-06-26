@@ -3,17 +3,20 @@
 
 <mapper namespace="finalshop.board">
 
-	<select id="count" resultType="int">
+	<select id="listSize" resultType="int">
 		select count(*) from TB_BOARD where DEL_FLG = 'N'
 	</select>
 	
 	<select id="list" resultType="board" parameterType="int">
-		select u.BOARD_NO, u.MEM_ID, u.TITLE, u.TEXT, u.COUNT, u.DEL_FLG, u.REG_DTM, u.MOD_DTM, u.MEM_NM 
-		from (select ROWNUM n, t.* 
-		from (select b.*, m.MEM_NM as MEM_NM from TB_BOARD b, TB_MEM m where b.MEM_ID = m.MEM_ID and DEL_FLG = 'N' 
-		order by to_number(BOARD_NO) desc) t 
-		where ROWNUM <![CDATA[<]]>= (#{page_no} * 10)) u 
-		where u.n <![CDATA[>]]>= (#{page_no} * 10 - 9)
+	select a.*, (select count(*) from TB_REPLY r where r.BOARD_NO = a.BOARD_NO and DEL_FLG = 'N') as REPLY_SIZE 
+	from (select u.BOARD_NO, u.MEM_ID, u.TITLE, u.TEXT, u.COUNT, u.DEL_FLG, u.REG_DTM, u.MOD_DTM, u.MEM_NM 
+	      from (select ROWNUM n, t.* 
+        		from (select b.*, m.MEM_NM as MEM_NM 
+	                  from TB_BOARD b, TB_MEM m
+	                  where b.MEM_ID = m.MEM_ID and b.DEL_FLG = 'N'
+	                  order by to_number(b.BOARD_NO) desc) t 
+				where ROWNUM <![CDATA[<]]>= (#{page_no} * 10)) u 
+	      where u.n <![CDATA[>]]>= (#{page_no} * 10 - 9)) a
 	</select>
 
 	<select id="view" resultType="board" parameterType="String">
@@ -29,16 +32,81 @@
 	</select>
 
 	<select id="viewCount" parameterType="String">
-		update TB_BOARD set COUNT = (COUNT + 1) where BOARD_NO = board_no
+		update TB_BOARD set COUNT = (COUNT + 1) where BOARD_NO = #{board_no}
 	</select>
 	
 	<select id="delete" parameterType="String">
 		update TB_BOARD set DEL_FLG = 'Y' where BOARD_NO = #{board_no}
 	</select>
 	
+	<select id="searchListSize" resultType="int" parameterType="hashmap">
+		select count(*) from TB_BOARD b, TB_MEM m where b.MEM_ID = m.MEM_ID and b.DEL_FLG = 'N' and 
+		<choose>
+			<when test="target == 'all'">
+				(b.TITLE like '%'||#{keyword}||'%' or b.TEXT like '%'||#{keyword}||'%')
+			</when>
+			<when test="target == 'title'">
+				b.TITLE like '%'||#{keyword}||'%'
+			</when>
+			<when test="target == 'text'">
+				b.TEXT like '%'||#{keyword}||'%'
+			</when>
+			<when test="target == 'mem_nm'">
+				m.MEM_NM like '%'||#{keyword}||'%'
+			</when>
+			<when test="target == 'mem_id'">
+				m.MEM_ID like '%'||#{keyword}||'%'
+			</when>
+		</choose>
+	</select>
+
+	<select id="search" resultType="board" parameterType="hashmap">
+		select a.*, (select count(*) from TB_REPLY r where r.BOARD_NO = a.BOARD_NO and DEL_FLG = 'N') as REPLY_SIZE 
+		from (select u.BOARD_NO, u.MEM_ID, u.TITLE, u.TEXT, u.COUNT, u.DEL_FLG, u.REG_DTM, u.MOD_DTM, u.MEM_NM 
+		from (select ROWNUM n, t.* 
+		from (select b.*, m.MEM_NM as MEM_NM from TB_BOARD b, TB_MEM m where b.MEM_ID = m.MEM_ID and DEL_FLG = 'N' and  
+		<choose>
+			<when test="target == 'all'">
+				(b.TITLE like '%'||#{keyword}||'%' or b.TEXT like '%'||#{keyword}||'%') 
+			</when>
+			<when test="target == 'title'">
+				b.TITLE like '%'||#{keyword}||'%'
+			</when>
+			<when test="target == 'text'">
+				b.TEXT like '%'||#{keyword}||'%'
+			</when>
+			<when test="target == 'mem_nm'">
+				m.MEM_NM like '%'||#{keyword}||'%'
+			</when>
+			<when test="target == 'mem_id'">
+				m.MEM_ID like '%'||#{keyword}||'%'
+			</when>
+		</choose>
+		order by to_number(BOARD_NO) desc) t 
+		where ROWNUM <![CDATA[<]]>= (#{page_no} * 10)) u 
+		where u.n <![CDATA[>]]>= (#{page_no} * 10 - 9)) a
+	</select>
 	
+	<select id="replySize" resultType="int" parameterType="String">
+		select count(*) from TB_REPLY where DEL_FLG = 'N' and BOARD_NO = #{board_no}
+	</select>
 	
+	<select id="replyView" resultType="reply" parameterType="String">
+		select r.*, m.MEM_NM as MEM_NM from TB_REPLY r, TB_MEM m 
+		where r.MEM_ID = m.MEM_ID and r.BOARD_NO = #{board_no} and DEL_FLG = 'N' 
+		order by to_number(r.SEQ) ASC
+	</select>
 	
+	<select id="replyWrite" parameterType="reply">
+		insert into TB_REPLY values(#{board_no}, REPLY_SEQ_ID.NEXTVAL, #{mem_id}, #{reply}, 'N', to_char(sysdate, 'YYYYMMDDHH24MISS'), null)
+	</select>
 	
+	<select id="replyModify" parameterType="reply">
+		update TB_REPLY set REPLY = #{reply}, MOD_DTM = to_char(sysdate, 'YYYYMMDDHH24MISS') where SEQ = #{seq}
+	</select>
+	
+	<select id="replyDelete" parameterType="String">
+		update TB_REPLY set DEL_FLG = 'Y' where SEQ = #{seq}
+	</select>	
 	
 </mapper>

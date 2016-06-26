@@ -1,15 +1,5 @@
-<%@page import="member.dto.MemberDTO"%>
-<%@page import="board.dto.BoardDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" session="true" import="java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR" session="true"%>
 <script>
-<% 	BoardDTO board = (BoardDTO) request.getAttribute("board");
-	MemberDTO mem = (MemberDTO) session.getAttribute("mem");
-
-	// 임의 접근 차단 - 작성자와 로그인 아이디가 다를 경우 리스트로 리다이렉트
-//	if(mem != null && !mem.getMemId().equals(board.getMemId()) || mem == null) { %>
-		alert('잘못된 접근입니다.');
-		location.href='board_list.do';
-<%//	} %>
 	// 전송 전 체크
 	function modCheck() {
 		// 제목, 내용 사이즈 체크하는 정규식(아스키코드는 1, 유니코드는 3으로 계산)
@@ -69,7 +59,7 @@
 							<label for="text" class="control-label">내용</label>
 						</div>
 						<div class="col-md-10">
-							<textarea class="form-control" rows="20" name="text" id="text">#{board.text}</textarea>
+							<textarea class="form-control" rows="20" name="text" id="text">${board.text}</textarea>
 						</div>
 					</div>
 					<div class="form-group">

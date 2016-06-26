@@ -21,10 +21,10 @@ public class BoardListController {
 	public ModelAndView runBoardList(@RequestParam(value="page_no", defaultValue="1") int page_no) {
 		ModelAndView mav = new ModelAndView();
 
-		int count = service.count();
+		int listSize = service.listSize();
 		List<BoardDTO> list = service.list(page_no);
 
-		mav.addObject("count", count);
+		mav.addObject("listSize", listSize);
 		mav.addObject("list", list);
 		mav.addObject("page_no", page_no);
 		mav.addObject("mode","list");

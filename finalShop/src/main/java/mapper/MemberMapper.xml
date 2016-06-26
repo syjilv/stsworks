@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="finalshop.member">
-	<select id="login" resultType="member" parameterType="member">
+	<select id="login" resultType="member" parameterType="hashmap">
 		select * from TB_MEM where MEM_ID = #{mem_id} and PWD = #{pwd}
 	</select>
 </mapper>
