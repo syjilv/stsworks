@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import product.comment.dto.PrdCommentDTO;
+import product.comment.dto.PrdCommentWordCountDTO;
 
 @Repository("prdcommentdao")
 public class PrdCommentDAOImpl implements PrdCommentDAO {
@@ -41,4 +42,11 @@ public class PrdCommentDAOImpl implements PrdCommentDAO {
 	public void commentDelete(String seq) {
 		sqlsession.update("finalshop.prdComment.commentDelete", seq);
 	}
+
+	@Override
+	public List<PrdCommentWordCountDTO> wordCountList() {
+		return sqlsession.selectList("finalshop.prdComment.wordCount.list");
+	}
+	
+	
 }

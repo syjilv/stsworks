@@ -24,6 +24,10 @@
 	<definition name="product/view" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/product/prdview.jsp"/>
 	</definition>
+
+	<definition name="product/wordCountResult" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/product/prdwordcountresult.jsp"/>
+	</definition>
 	
 	<definition name="member/login" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/member/login.jsp"/>

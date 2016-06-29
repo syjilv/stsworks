@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import product.comment.dao.PrdCommentDAO;
 import product.comment.dto.PrdCommentDTO;
+import product.comment.dto.PrdCommentWordCountDTO;
 @Service
 public class PrdCommentServiceImpl implements PrdCommentService {
 	@Autowired
@@ -39,5 +40,10 @@ public class PrdCommentServiceImpl implements PrdCommentService {
 	@Override
 	public void commentDelete(String seq) {
 		dao.commentDelete(seq);
+	}
+
+	@Override
+	public List<PrdCommentWordCountDTO> wordCountList() {
+		return dao.wordCountList();
 	}
 }

@@ -9,6 +9,8 @@
 		<typeAlias type="board.dto.BoardDTO" alias="board"/>
 		<typeAlias type="board.dto.ReplyDTO" alias="reply"/>
 		<typeAlias type="product.comment.dto.PrdCommentDTO" alias="comment"/>
+		<typeAlias type="product.comment.dto.PrdCommentWordCountDTO" alias="wordCount"/>
+		
 		
 		
 	</typeAliases>
@@ -17,5 +19,6 @@
 		<mapper resource="mapper/MemberMapper.xml"/>
 		<mapper resource="mapper/BoardMapper.xml"/>
 		<mapper resource="mapper/PrdCommentMapper.xml"/>
+		<mapper resource="mapper/PrdCommentWordCountMapper.xml"/>
 	</mappers>
 </configuration>

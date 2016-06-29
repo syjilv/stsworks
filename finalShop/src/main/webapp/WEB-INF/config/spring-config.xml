@@ -48,12 +48,8 @@
 
 	<!-- JDNI -->
 	<beans:bean id="con" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<beans:property name="jndiName" value="jdbc/myspring"/>
+		<beans:property name="jndiName" value="java:comp/env/jdbc/myspring"/>
 		<beans:property name="resourceRef" value="true"/>
-	</beans:bean>
-	
-	<beans:bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
-		<beans:property name="dataSource" ref="con"/>
 	</beans:bean>
 
 	<!-- MyBatis -->

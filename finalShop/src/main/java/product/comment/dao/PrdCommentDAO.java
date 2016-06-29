@@ -3,6 +3,7 @@ package product.comment.dao;
 import java.util.List;
 
 import product.comment.dto.PrdCommentDTO;
+import product.comment.dto.PrdCommentWordCountDTO;
 
 public interface PrdCommentDAO {
 
@@ -16,5 +17,8 @@ public interface PrdCommentDAO {
 	void commentModify(PrdCommentDTO comment);
 	// ¥Ò±€ ªË¡¶
 	void commentDelete(String seq);
+	
+	//wordCount
+	List<PrdCommentWordCountDTO> wordCountList();
 	
 }
