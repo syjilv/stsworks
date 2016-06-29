@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="finalshop.prdComment">
+	<select id="commentSize" resultType="int" parameterType="String">
+		select count(*) from TB_PRD_COMMENT where DEL_FLG = 'N' and PRD_NO = #{prd_no}
+	</select>
+	
+	<select id="commentView" resultType="comment" parameterType="String">
+		select c.*, m.MEM_NM as MEM_NM from TB_PRD_COMMENT c, TB_MEM m 
+		where c.MEM_ID = m.MEM_ID and c.PRD_NO = #{prd_no} and DEL_FLG = 'N' 
+		order by to_number(c.SEQ) ASC
+	</select>
+	
+	<select id="commentWrite" parameterType="comment">
+		insert into TB_PRD_COMMENT values(#{prd_no}, PRD_COMMENT_SEQ_ID.NEXTVAL, #{mem_id}, #{prd_comment}, 'N', to_char(sysdate, 'YYYYMMDDHH24MISS'))
+	</select>
+	
+	<select id="commentModify" parameterType="comment">
+		update TB_PRD_COMMENT set PRD_COMMENT = #{prd_comment} where SEQ = #{seq}
+	</select>
+	
+	<select id="commentDelete" parameterType="String">
+		update TB_PRD_COMMENT set DEL_FLG = 'Y' where SEQ = #{seq}
+	</select>	
+</mapper>

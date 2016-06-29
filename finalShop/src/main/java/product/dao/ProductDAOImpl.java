@@ -22,4 +22,10 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<ProductDTO> searchTopProduct() {
 		return sqlsession.selectList("finalshop.product.toplist");
 	}
+	
+	@Override
+	public ProductDTO productview(String prd_no) {
+		return sqlsession.selectOne("finalshop.product.read",prd_no);
+	}
+	
 }

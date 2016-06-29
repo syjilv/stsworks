@@ -8,4 +8,6 @@ public interface ProductService {
 	
 	List<ProductDTO> productlist(String category);	//ProductDAOImpl의 productlist()를 호출하는 메소드
 	List<ProductDTO> searchTopProduct();
+	ProductDTO productview(String prd_no);
+
 }

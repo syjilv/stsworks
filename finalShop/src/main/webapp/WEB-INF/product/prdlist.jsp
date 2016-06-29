@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" session="true" pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="section">
@@ -13,7 +13,7 @@
 			<c:forEach var="prd" items="${list}">
 				<div class="col-md-3">
 					<img src="/finalshop/resources/images/product/${prd.img_gen_file_nm}" class="img-responsive">
-					<h3>${prd.prd_nm}</h3>
+					<h3><a href="/finalshop/product/view.do?prd_no=${prd.prd_no}">${prd.prd_nm}</a></h3>
 					<h4>${prd.sell_prc_unit}</h4>
 				</div>
 			</c:forEach>

@@ -8,4 +8,7 @@
 	<select id="toplist" resultType="product">
 		select PRD_NO,PRD_NM,IMG_GEN_FILE_NM from tb_product where PRD_NO in (select PRD_NO from topproduct)
 	</select>
+	<select id="read" resultType="product" parameterType="String">
+		select * from TB_PRODUCT where PRD_NO = #{prd_no}
+	</select>
 </mapper>

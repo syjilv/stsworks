@@ -7,4 +7,5 @@ import product.dto.ProductDTO;
 public interface ProductDAO {
 	List<ProductDTO> productlist (String category);
 	List<ProductDTO> searchTopProduct();
+	ProductDTO productview(String prd_no);
 }

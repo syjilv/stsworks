@@ -24,4 +24,9 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductDTO> searchTopProduct() {
 		return dao.searchTopProduct();
 	}
+
+	@Override
+	public ProductDTO productview(String prd_no) {
+		return dao.productview(prd_no);
+	}
 }
