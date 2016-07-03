@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="finalshop.admin">
+
+	<select id="accessLogList" resultType="admin">
+		select YEAR, to_char(to_date(MONTH, 'MON', 'NLS_DATE_LANGUAGE=AMERICAN'), 'mm') MONTH, IP, URI, COUNT from TB_ADMIN_ACCESSLOG order by to_number(COUNT) desc
+	</select>
+	<select id="accessLogByMonth" resultType="admin">
+		select YEAR, to_char(to_date(MONTH, 'MON', 'NLS_DATE_LANGUAGE=AMERICAN'), 'mm') MONTH, sum(to_number(COUNT)) COUNT 
+		from TB_ADMIN_ACCESSLOG group by YEAR, MONTH order by COUNT desc
+	</select>
+	<select id="accessLogByIP" resultType="admin">
+		select IP, sum(to_number(COUNT)) COUNT from TB_ADMIN_ACCESSLOG group by IP order by COUNT desc
+	</select>
+	<select id="accessLogByURI" resultType="admin">
+		select URI, sum(to_number(COUNT)) COUNT from TB_ADMIN_ACCESSLOG group by URI order by COUNT desc	
+	</select>
+	
+</mapper>

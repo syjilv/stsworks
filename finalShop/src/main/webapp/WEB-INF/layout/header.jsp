@@ -21,6 +21,7 @@
 					</c:otherwise>
 				</c:choose>
 				<li><a href="/finalshop/product/word_count_result.do">Word Count</a></li>
+				<li><a href="/finalshop/admin/accesslog.do">접속 기록</a></li>
 				<li><a href="/finalshop/board/list.do">게시판</a></li>
 			</ul>
 		</div>

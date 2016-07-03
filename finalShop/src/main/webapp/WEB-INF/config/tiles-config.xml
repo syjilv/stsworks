@@ -49,5 +49,9 @@
 	<definition name="board/modify" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/board/modify.jsp"/>
 	</definition>	
+	
+		<definition name="admin/accesslog" extends="mainTemplate">
+		<put-attribute name="content" value="/WEB-INF/admin/accesslog.jsp"/>
+	</definition>	
 
 </tiles-definitions>
