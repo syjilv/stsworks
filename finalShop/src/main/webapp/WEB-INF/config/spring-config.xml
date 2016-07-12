@@ -2,9 +2,12 @@
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.5.xsd">
+		
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing 
 		infrastructure -->
@@ -63,6 +66,16 @@
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg ref="sqlSessionFactory" />
 	</beans:bean>
+	
+	<!-- mongoDB -->
+	<context:component-scan base-package="product.compare" />
+	<mongo:mongo host="52.78.11.106" port="27017"/>
+	
+	<beans:bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<beans:constructor-arg ref="mongo"/>
+		<beans:constructor-arg name="databaseName" value="danawa"/>
+	</beans:bean>
+	<mongo:repositories base-package="product.compare.dto"/>
 
 	<!-- 로그인 인터셉터 -->
 	<interceptors>

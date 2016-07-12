@@ -97,6 +97,12 @@ function commentModCheck() {
 		}
 	}
 }
+
+function comparePopup(){
+	var popUrl = "/finalshop/product/compare.do";
+	var popOption = "width=600, height=500, top=100, left=100, resizable=no, scrollbars=no, status=no;";
+		window.open(popUrl,"가격비교",popOption);
+	}
 	
 </script>
 
@@ -109,6 +115,7 @@ function commentModCheck() {
 			<div class="col-md-6">
 				<h1>${prd.prd_nm}</h1>
 				<h3>${prd.sell_prc_unit}</h3>
+				<h3><a href="javascript:comparePopup();">가격비교</a></h3>
 			</div>
 		</div>
 		<hr>

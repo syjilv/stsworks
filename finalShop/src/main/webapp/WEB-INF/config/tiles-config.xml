@@ -3,6 +3,8 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
+	<!-- 1단 템플릿 -->
+	<definition name="singleTemplate" template="/WEB-INF/layout/single_layout.jsp"/>
 	<!-- 2단 템플릿 -->
 	<definition name="mainTemplate" template="/WEB-INF/layout/main_layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/layout/header.jsp"/>
@@ -27,6 +29,10 @@
 
 	<definition name="product/wordCountResult" extends="mainTemplate">
 		<put-attribute name="content" value="/WEB-INF/product/prdwordcountresult.jsp"/>
+	</definition>
+
+	<definition name="product/compare" extends="singleTemplate">
+		<put-attribute name="content" value="/WEB-INF/product/prdcomparelist.jsp"/>
 	</definition>
 	
 	<definition name="member/login" extends="mainTemplate">
