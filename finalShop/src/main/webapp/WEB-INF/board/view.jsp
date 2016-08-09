@@ -5,15 +5,15 @@
 
 <script type="text/javascript">
 	<%-- 삭제는 중요하니 POST로 넘기는 스크립트 --%>
-	function del(board_no) {
+	function cardClose(board_id) {
 	    if (confirm("삭제하시겠습니까?") == true) {
 		    var delform = document.createElement("form");
 		    delform.setAttribute("method", "POST");
-		    delform.setAttribute("action", "/finalshop/board/delete.do");
+		    delform.setAttribute("action", "/jetstream/board/card_close.do");
 	        var field = document.createElement("input");
 			field.setAttribute("type", "hidden");
-			field.setAttribute("name", "board_no");
-			field.setAttribute("value", board_no);
+			field.setAttribute("name", "board_id");
+			field.setAttribute("value", board_id);
 	        delform.appendChild(field);
 		    document.body.appendChild(delform);
 		    delform.submit();
@@ -22,9 +22,9 @@
 	    }
 	}
 	// 댓글 전송 전 체크
-	function replyWriteCheck() {
+	function commentCreateCheck() {
 		// 제목, 내용 사이즈 체크하는 정규식(아스키코드는 1, 유니코드는 3으로 계산)
-		var replySize = replyWriteForm.reply.value.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
+		var commentSize = commentCreateForm.comment_txt.value.replace(/[\0-\x7f]|([0-\u07ff]|(.))/g,"$&$1$2").length;
 
 		if(replySize <= 0) {
 			alert("내용을 입력해 주세요.");
